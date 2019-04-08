@@ -1,0 +1,84 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="my-first-comp">
+  <template>
+   
+    <style>
+
+      table.blueTable {
+        border: 1px solid #1C6EA4;
+        background-color: #EEEEEE;
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+      }
+
+      table.blueTable tbody td {
+        font-size: 13px;
+      }
+
+    </style>
+ 
+ <template is="dom-repeat" items="[[names]]">
+    <table class="blueTable">
+      <tbody>
+        <tr>
+          <td>
+            [[item.name]]
+          </td>  
+        </tr>
+        <tr>
+          <td>
+            [[item.edad]]
+          </td>  
+        </tr>
+      </tbody>
+    </table>
+  </template>
+
+</template>
+
+  <script>
+    /**
+     * `my-first-comp`
+     * My first polymer 2 component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MyFirstComp extends Polymer.Element {
+      static get is() { 
+        return 'my-first-comp';
+      }
+      static get properties() {
+        return {
+          names: {
+            type: Array,
+            value: function() {
+              return [
+                {
+                  name: 'Otilia',
+                  edad: 25
+                },
+                {
+                  name: 'Vicente',
+                  edad: 29
+                },
+                {
+                  name: 'Andeh',
+                  edad: 31
+                }
+              ];
+            }  
+          }
+        }
+      };  
+
+
+    }
+
+    window.customElements.define(MyFirstComp.is, MyFirstComp);
+  </script>
+</dom-module>
