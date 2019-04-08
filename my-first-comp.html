@@ -6,29 +6,41 @@
    
     <style>
 
-      table.blueTable {
-        border: 1px solid #1C6EA4;
-        background-color: #EEEEEE;
+      table.myTable {
+        border: 1px solid #6b133d;
+        background-color: #9898aa;
         width: 100%;
         text-align: left;
         border-collapse: collapse;
       }
 
-      table.blueTable tbody td {
+      table.myTable td, table.myTable th {
+        border: 1px solid #6a587a;
+        padding: 3px 2px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      table.myTable tbody td {
         font-size: 13px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
       }
 
     </style>
  
- <template is="dom-repeat" items="[[names]]">
-    <table class="blueTable">
+ 
+    <table class="myTable">
+      <thead>
+        <tr>
+          <td>Nombre</td>
+          <td>Edad</td>
+        </tr>
+      </thead>
+      <template is="dom-repeat" items="[[names]]">  
       <tbody>
         <tr>
           <td>
             [[item.name]]
           </td>  
-        </tr>
-        <tr>
           <td>
             [[item.edad]]
           </td>  
