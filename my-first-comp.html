@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
 
 <dom-module id="my-first-comp">
   <template>
@@ -25,6 +26,11 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
       }
 
+      input{
+        margin-bottom: 0.5em;
+        float: right;
+      }
+
     </style>
  
  
@@ -33,21 +39,28 @@
         <tr>
           <td>Nombre</td>
           <td>Edad</td>
+          <td>Helado favorito</td>
         </tr>
       </thead>
-      <template is="dom-repeat" items="[[names]]">  
+      <input type="text" value="{{searchString::input}}" placeholder="Filtra aquí">
+      <template is="dom-repeat" items="{{names}}" as="profile"
+      filter="{{computeFilter(searchString)}}">  
       <tbody>
         <tr>
           <td>
-            [[item.name]]
+          {{profile.name}}
           </td>  
           <td>
-            [[item.edad]]
+            {{profile.edad}}
+          </td>  
+          <td>
+            {{profile.helado}}
           </td>  
         </tr>
       </tbody>
     </table>
   </template>
+  
 
 </template>
 
@@ -61,9 +74,7 @@
      * @demo demo/index.html
      */
     class MyFirstComp extends Polymer.Element {
-      static get is() { 
-        return 'my-first-comp';
-      }
+      static get is() { return 'my-first-comp'; }
       static get properties() {
         return {
           names: {
@@ -72,15 +83,18 @@
               return [
                 {
                   name: 'Otilia',
-                  edad: 25
+                  edad: 25,
+                  helado: 'Almendra'
                 },
                 {
                   name: 'Vicente',
-                  edad: 29
+                  edad: 29,
+                  helado: 'Café'
                 },
                 {
                   name: 'Andeh',
-                  edad: 31
+                  edad: 31,
+                  helado: 'Menta'
                 }
               ];
             }  
@@ -88,6 +102,22 @@
         }
       };  
 
+      computeFilter(string) {
+        if (!string) {
+          // set filter to null to disable filtering
+          return null;
+        } else {
+          // return a filter function for the current search string
+          string = string.toLowerCase();
+          
+          return function(profile) {
+            var first = profile.name.toLowerCase();
+            var last = profile.helado.toLowerCase();
+            return (first.indexOf(string) != -1 ||
+                last.indexOf(string) != -1);
+          };
+        }
+      }
 
     }
 
