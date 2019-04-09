@@ -42,18 +42,19 @@
           <td>Helado favorito</td>
         </tr>
       </thead>
-      <input type="text" placeholder="Filtra aquí">
-      <template is="dom-repeat" items="[[names]]">  
+      <input type="text" value="{{searchString::input}}" placeholder="Filtra aquí">
+      <template is="dom-repeat" items="{{names}}" as="profile"
+      filter="{{computeFilter(searchString)}}">  
       <tbody>
         <tr>
           <td>
-            [[item.name]]
+          {{profile.name}}
           </td>  
           <td>
-            [[item.edad]]
+            {{profile.edad}}
           </td>  
           <td>
-            [[item.helado]]
+            {{profile.helado}}
           </td>  
         </tr>
       </tbody>
@@ -73,9 +74,7 @@
      * @demo demo/index.html
      */
     class MyFirstComp extends Polymer.Element {
-      static get is() { 
-        return 'my-first-comp';
-      }
+      static get is() { return 'my-first-comp'; }
       static get properties() {
         return {
           names: {
@@ -103,6 +102,22 @@
         }
       };  
 
+      computeFilter(string) {
+        if (!string) {
+          // set filter to null to disable filtering
+          return null;
+        } else {
+          // return a filter function for the current search string
+          string = string.toLowerCase();
+          
+          return function(profile) {
+            var first = profile.name.toLowerCase();
+            var last = profile.helado.toLowerCase();
+            return (first.indexOf(string) != -1 ||
+                last.indexOf(string) != -1);
+          };
+        }
+      }
 
     }
 
