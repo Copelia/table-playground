@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
 
 <dom-module id="my-first-comp">
   <template>
@@ -25,6 +26,11 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
       }
 
+      input{
+        margin-bottom: 0.5em;
+        float: right;
+      }
+
     </style>
  
  
@@ -33,8 +39,10 @@
         <tr>
           <td>Nombre</td>
           <td>Edad</td>
+          <td>Helado favorito</td>
         </tr>
       </thead>
+      <input type="text" placeholder="Filtra aquí">
       <template is="dom-repeat" items="[[names]]">  
       <tbody>
         <tr>
@@ -44,10 +52,14 @@
           <td>
             [[item.edad]]
           </td>  
+          <td>
+            [[item.helado]]
+          </td>  
         </tr>
       </tbody>
     </table>
   </template>
+  
 
 </template>
 
@@ -72,15 +84,18 @@
               return [
                 {
                   name: 'Otilia',
-                  edad: 25
+                  edad: 25,
+                  helado: 'Almendra'
                 },
                 {
                   name: 'Vicente',
-                  edad: 29
+                  edad: 29,
+                  helado: 'Café'
                 },
                 {
                   name: 'Andeh',
-                  edad: 31
+                  edad: 31,
+                  helado: 'Menta'
                 }
               ];
             }  
