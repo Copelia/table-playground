@@ -3,7 +3,9 @@
   "description": "My first polymer 2 component",
   "main": "my-first-comp.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0"
+    "polymer": "Polymer/polymer#^2.0.0",
+    "paper-checkbox": "@polymer/paper-checkbox#2.0-preview",
+    "paper-button": "@polymer/paper-button#2.0-preview"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",

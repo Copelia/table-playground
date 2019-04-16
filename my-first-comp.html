@@ -1,6 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
-<link rel="import" href="../polymer/lib/elements/dom-if.html">
+<link rel="import" href=".../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="my-first-comp">
   <template>
@@ -31,8 +31,66 @@
         float: right;
       }
 
+      paper-checkbox.blue {
+      --paper-checkbox-checked-color: var(--paper-blue-500);
+      --paper-checkbox-checked-ink-color: var(--paper-blue-500);
+      --paper-checkbox-unchecked-color: var(--paper-blue-900);
+      --paper-checkbox-unchecked-ink-color: var(--paper-blue-900);
+      --paper-checkbox-label-color: var(--paper-blue-700);
+      --paper-checkbox-label-checked-color: var(--paper-blue-900);
+       }
+
+       paper-button.indigo {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
+      }
+
+      paper-button.green {
+        background-color: var(--paper-green-500);
+        color: white;
+       }
+      paper-button.green[active] {
+        background-color: var(--paper-red-500);
+      }
+
+      .button-container{
+        margin-top: 2em;
+        text-align: center;
+      }
+
     </style>
- 
+    <table class="myTable">
+            <thead>
+      
+              <tr>
+                <td>Tipo</td>
+                <td>Nombre</td>
+                <td>Día</td>
+                <td>Noche</td>
+              </tr>
+      
+            </thead>
+            <!--<input type="text" value="{{searchString::input}}" placeholder="Filtra aquí">-->  
+            <template is="dom-repeat" items="{{productsList}}" as="product">     
+            <tbody>
+                <tr>       
+                  <td>Limpieza</td>
+                  <td>{{product.name}}</td>  
+                  <td>
+                      <paper-checkbox></paper-checkbox>
+                  </td> 
+                  <td>
+                      <paper-checkbox></paper-checkbox>
+                  </td> 
+      
+                </tr>
+            </tbody>
+            </template>
+    </table>
  
     <table class="myTable">
       <thead>
@@ -57,14 +115,45 @@
       <tbody>
           <tr>       
             <td>{{product.tipo}}</td>
-            <td>{{product.name}}</td>   
+            <td>{{product.name}}</td>  
+            <td>
+                <paper-checkbox></paper-checkbox>
+            </td> 
+            <td>
+                <paper-checkbox></paper-checkbox>
+            </td> 
+            <td>
+                <paper-checkbox></paper-checkbox>
+            </td> 
+            <td>
+                <paper-checkbox></paper-checkbox>
+            </td> 
+            <td>
+                <paper-checkbox></paper-checkbox>
+            </td> 
+            <td>
+                <paper-checkbox></paper-checkbox>
+            </td> 
+            <td>
+                <paper-checkbox></paper-checkbox>
+            </td> 
+            <td>
+                <paper-checkbox></paper-checkbox>
+            </td> 
+            <td>
+                <paper-checkbox></paper-checkbox>
+            </td> 
+
           </tr>
       </tbody>
       </template>
     </table>
-      
 
-</template>
+    <div class="button-container">
+      <paper-button raised class="indigo">ENVIAR</paper-button>
+      <paper-button raised class="green">IMPRIMIR</paper-button>
+    </div>
+  </template>
 
   <script>
     /**
