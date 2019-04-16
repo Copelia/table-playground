@@ -68,6 +68,7 @@
       
               <tr>
                 <td>Tipo</td>
+                <td>Seleccionar</td>
                 <td>Nombre</td>
                 <td>Día</td>
                 <td>Noche</td>
@@ -79,6 +80,7 @@
             <tbody>
                 <tr>       
                   <td>Limpieza</td>
+                  <td> <paper-checkbox></paper-checkbox></td>
                   <td>{{product.name}}</td>  
                   <td>
                       <paper-checkbox></paper-checkbox>
@@ -97,6 +99,7 @@
 
         <tr>
           <td>Tipo</td>
+          <td>Seleccionar</td>
           <td>Nombre</td>
           <td>Día</td>
           <td>Noche</td>
@@ -115,6 +118,7 @@
       <tbody>
           <tr>       
             <td>Exfoliación</td>
+            <td> <paper-checkbox></paper-checkbox></td>
             <td>{{product.name}}</td>  
             <td>
                 <paper-checkbox></paper-checkbox>
@@ -141,7 +145,7 @@
                 <paper-checkbox></paper-checkbox>
             </td> 
             <td>
-                <paper-checkbox></paper-checkbox>
+                <paper-checkbox checked?="{{checked}} on-click="_checkBoxClicked"></paper-checkbox>
             </td> 
 
           </tr>
@@ -221,18 +225,28 @@
               {name: 'CremaCuatro', tipo: 'Exfoliación', type: String}
               ]
             }
+          },  
+          checked: {
+            type: Boolean,
+            value: true,
+            observer: '_checkChanged'
           }
-        }
-        
-      };  
-
-      //methods
-      checkedItems(){
-       // console.log(this.);
-        
+         }
       }
-
-    }
+      //methods
+       _checkChanged(){
+         console.log(this.$.paper-checkbox.checked.value);
+         console.log("The Check Box was clicked.");
+         
+ /*       const checkbox = document.querySelector('paper-checkbox')
+            if(checkbox.checked){
+              let data = checkbox.serialize()
+              console.log(data);
+              
+              //console.log(event.target.value); 
+            } */
+          }
+      }; 
 
     window.customElements.define(MyFirstComp.is, MyFirstComp);
   </script>
