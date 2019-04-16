@@ -36,31 +36,33 @@
  
     <table class="myTable">
       <thead>
+
         <tr>
+          <td>Tipo</td>
           <td>Nombre</td>
-          <td>Edad</td>
-          <td>Helado favorito</td>
+          <td>Día</td>
+          <td>Noche</td>
+          <td>LUN</td>
+          <td>MAR</td>
+          <td>MIE</td>
+          <td>JUE</td>
+          <td>VIE</td>
+          <td>SAB</td>
+          <td>DOM</td>
         </tr>
+
       </thead>
-      <input type="text" value="{{searchString::input}}" placeholder="Filtra aquí">
-      <template is="dom-repeat" items="{{names}}" as="profile"
-      filter="{{computeFilter(searchString)}}">  
+      <!--<input type="text" value="{{searchString::input}}" placeholder="Filtra aquí">-->  
+      <template is="dom-repeat" items="{{productsList}}" as="product">     
       <tbody>
-        <tr>
-          <td>
-          {{profile.name}}
-          </td>  
-          <td>
-            {{profile.edad}}
-          </td>  
-          <td>
-            {{profile.helado}}
-          </td>  
-        </tr>
+          <tr>       
+            <td>{{product.tipo}}</td>
+            <td>{{product.name}}</td>   
+          </tr>
       </tbody>
+      </template>
     </table>
-  </template>
-  
+      
 
 </template>
 
@@ -77,47 +79,53 @@
       static get is() { return 'my-first-comp'; }
       static get properties() {
         return {
-          names: {
+          productsType: {
             type: Array,
             value: function() {
               return [
-                {
-                  name: 'Otilia',
-                  edad: 25,
-                  helado: 'Almendra'
-                },
-                {
-                  name: 'Vicente',
-                  edad: 29,
-                  helado: 'Café'
-                },
-                {
-                  name: 'Andeh',
-                  edad: 31,
-                  helado: 'Menta'
-                }
-              ];
+              {name: 'Limpieza', type: String},
+              {name: 'Tonificacion', type: String},
+              {name: 'Exfoliacion', type: String},
+              {name: 'Tratamiento', type: String},
+              {name: 'Protector Solar', type: String},
+              {name: 'Tratamiento de noche', type: String},
+              {name: 'Otros', type: String},
+              {name: 'Noche', type: Boolean, property: 'noche'},
+              {name: 'Día', type: Boolean, property: 'día'}
+              ]
             }  
+          },
+          columnList: {
+            type: Array,
+            value: function() {
+              return[
+              {colName: 'Tipo', type: String},
+              {colName: 'Nombre', type: String},
+              {colName: 'Día', type: Boolean},
+              {colName: 'Noche', type: Boolean},
+              {colName: 'LUN', type: Boolean},
+              {colName: 'MAR', type: Boolean},
+              {colName: 'MIE', type: Boolean},
+              {colName: 'JUE', type: Boolean},
+              {colName: 'VIE', type: Boolean},
+              {colName: 'SAB', type: Boolean},
+              {colName: 'DOM', type: Boolean}
+              ]
+            }
+          },
+          productsList: {
+            type: Array,
+            value: function() {
+              return[
+              {name: 'CremaUno', tipo: 'Limpieza', type: String},
+              {name: 'CremaDos', tipo: 'Limpieza', type: String},
+              {name: 'CremaTres', tipo: 'Exfoliación', type: String},
+              {name: 'CremaCuatro', tipo: 'Exfoliación', type: String}
+              ]
+            }
           }
         }
       };  
-
-      computeFilter(string) {
-        if (!string) {
-          // set filter to null to disable filtering
-          return null;
-        } else {
-          // return a filter function for the current search string
-          string = string.toLowerCase();
-          
-          return function(profile) {
-            var first = profile.name.toLowerCase();
-            var last = profile.helado.toLowerCase();
-            return (first.indexOf(string) != -1 ||
-                last.indexOf(string) != -1);
-          };
-        }
-      }
 
     }
 
