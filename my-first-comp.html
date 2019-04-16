@@ -75,7 +75,7 @@
       
             </thead>
             <!--<input type="text" value="{{searchString::input}}" placeholder="Filtra aquí">-->  
-            <template is="dom-repeat" items="{{productsList}}" as="product">     
+            <template is="dom-repeat" items="{{cleanserList}}" as="product">     
             <tbody>
                 <tr>       
                   <td>Limpieza</td>
@@ -111,10 +111,10 @@
 
       </thead>
       <!--<input type="text" value="{{searchString::input}}" placeholder="Filtra aquí">-->  
-      <template is="dom-repeat" items="{{productsList}}" as="product">     
+      <template is="dom-repeat" items="{{exfoliateList}}" as="product">     
       <tbody>
           <tr>       
-            <td>{{product.tipo}}</td>
+            <td>Exfoliación</td>
             <td>{{product.name}}</td>  
             <td>
                 <paper-checkbox></paper-checkbox>
@@ -202,7 +202,7 @@
               ]
             }
           },
-          productsList: {
+          cleanserList: {
             type: Array,
             value: function() {
               return[
@@ -212,9 +212,25 @@
               {name: 'CremaCuatro', tipo: 'Exfoliación', type: String}
               ]
             }
+          },
+          exfoliateList: {
+            type: Array,
+            value: function() {
+              return[
+              {name: 'CremaTres', tipo: 'Exfoliación', type: String},
+              {name: 'CremaCuatro', tipo: 'Exfoliación', type: String}
+              ]
+            }
           }
         }
+        
       };  
+
+      //methods
+      checkedItems(){
+       // console.log(this.);
+        
+      }
 
     }
 
