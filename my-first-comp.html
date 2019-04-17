@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
 <link rel="import" href="../paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../paper-button/paper-button.html">
 
@@ -48,6 +49,10 @@
         text-align: center;
       }
 
+      .week-button{
+        float: left;
+      }
+
     </style>
     <table class="myTable">
             <thead>
@@ -64,9 +69,16 @@
                 <tr>       
                   <td>{{product.tipo}}</td>
                   <td>{{product.name}}</td>  
-                  <!--<td>{{product.name dom-if product.week == true -> select}}<span></span></td> -->
-                  <td> <paper-checkbox></paper-checkbox></td>
-  
+                  <td> <paper-checkbox on-change="checkChanged"></paper-checkbox></td>
+                  <template is="dom-if" if="{{product.week}}">
+                      <td ><span>LUN</span><input class="week-button" type="radio"></td>
+                      <td><span>MAR</span><input class="week-button" type="radio"></td>
+                      <td><span>MIE</span><input class="week-button" type="radio"></td>
+                      <td><span>JUE</span><input class="week-button" type="radio"></td>
+                      <td><span>VIE</span><input class="week-button" type="radio"></td>
+                      <td><span>SAB</span><input class="week-button" type="radio"></td>
+                      <td><span>DOM</span><input class="week-button" type="radio"></td>
+                  </template>      
                 </tr>
             </tbody>
             </template>
@@ -119,10 +131,12 @@
       }
       //methods
        checkChanged(event){
-  
-         console.log("The Check Box was clicked.");
-         
+         console.log("The Check Box was clicked.");        
           }
+
+       ifWeek(){
+
+       }   
       }; 
 
     window.customElements.define(MyFirstComp.is, MyFirstComp);
