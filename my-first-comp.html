@@ -55,35 +55,28 @@
 
     </style>
     <table class="myTable">
-            <thead>
-              <tr>
-                <template is="dom-repeat" items="{{columnList}}" as="column">     
-                  <td>{{column.colName}}</td>
-                  </template>
-              </tr>
-            </thead>
+      <thead>
+        <tr>
+          <template is="dom-repeat" items="{{columnList}}" as="column">     
+            <td>{{column.colName}}</td>
+          </template>
+        </tr>
+      </thead>
 
-            <template is="dom-repeat" items="{{productsList}}" as="product">     
-            <tbody>
-                <tr>       
-                  <td>{{product.tipo}}</td>
-                  <td>{{product.name}}</td>  
-                  <td> <paper-checkbox on-change="checkChanged"></paper-checkbox></td>
-                  <template is="dom-if" if="{{product.week}}">
-                      <template is="dom-repeat" items="{{weekList}}" as="week">
-                       <td>{{week.day}}<input class="week-button" type="radio"></td>
-  <!--                     <td ><span>LUN</span><input class="week-button" type="radio"></td>
-                      <td><span>MAR</span><input class="week-button" type="radio"></td>
-                      <td><span>MIE</span><input class="week-button" type="radio"></td>
-                      <td><span>JUE</span><input class="week-button" type="radio"></td>
-                      <td><span>VIE</span><input class="week-button" type="radio"></td>
-                      <td><span>SAB</span><input class="week-button" type="radio"></td>
-                      <td><span>DOM</span><input class="week-button" type="radio"></td> --> 
-                      </template>
-                  </template>      
-                </tr>
-            </tbody>
-            </template>
+      <template is="dom-repeat" items="{{productsList}}" as="product">     
+        <tbody>
+          <tr>       
+            <td>{{product.tipo}}</td>
+            <td>{{product.name}}</td>  
+            <td> <paper-checkbox on-change="checkChanged"></paper-checkbox></td>
+            <template is="dom-if" if="{{product.week}}">
+              <template is="dom-repeat" items="{{weekList}}" as="week">
+                <td>{{week.day}}<input class="week-button" type="radio"></td>      
+              </template>
+            </template>       
+          </tr>
+        </tbody>
+      </template>
     </table>
 
     <div class="button-container">
@@ -105,14 +98,6 @@
       static get is() { return 'my-first-comp'; }
       static get properties() {
         return {
-          productsType: {
-            type: Array,
-            value: function() {
-              return [
-              {name: ''}
-              ]
-            }  
-          },
           columnList: {
             type: Array,
             value: function() {
@@ -120,33 +105,29 @@
               {colName: ''}
               ]
             }
-          },
-          productsList: {
-            type: Array,
-            value: function() {
-              return[
-              {name: '', tipo: '', week: true},
-              ]
-            }
-          },
-          weekList:{
-            type: Array,
-            value: function(){
-              return[
-                {day: ''}
-              ]
+            },
+            productsList: {
+              type: Array,
+              value: function() {
+                return[
+                {name: '', tipo: '', week: true},
+                ]
+              }
+            },
+            weekList:{
+              type: Array,
+              value: function(){
+                return[
+                  {day: ''}
+                ]
+              }
             }
           }
-         }
-      }
+        }
       //methods
        checkChanged(event){
          console.log("The Check Box was clicked.");        
-          }
-
-       ifWeek(){
-
-       }   
+          }   
       }; 
 
     window.customElements.define(MyFirstComp.is, MyFirstComp);
