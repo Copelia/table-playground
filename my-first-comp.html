@@ -58,7 +58,15 @@
       <thead>
         <tr>
           <template is="dom-repeat" items="{{columnList}}" as="column">     
-            <td>{{column.colName}}</td>
+            <template is="dom-if" if="{{isType(column.tipo, 'text')}}">
+              <td><label>{{column.colName}}</label></td>
+            </template>
+            <template is="dom-if" if="{{isType(column.tipo, 'td')}}">
+              <td>{{column.colName}}</td>
+            </template>
+            <template is="dom-if" if="{{isType(column.tipo, 'button')}}">
+              <td><button>{{column.colName}}</button></td>
+            </template>
           </template>
         </tr>
       </thead>
@@ -102,11 +110,13 @@
             type: Array,
             value: function() {
               return[
-              {colName: ''}
+              {colName: 'Clienta', tipo:'text', type: Boolean, value: false},
+              {colName: 'Enviar', tipo: 'button', type: Boolean, value: false},
+              {colName: 'Columna', tipo: 'td', type: Boolean, value: false}
               ]
             }
-            },
-            productsList: {
+          },
+          productsList: {
               type: Array,
               value: function() {
                 return[
@@ -114,7 +124,7 @@
                 ]
               }
             },
-            weekList:{
+          weekList:{
               type: Array,
               value: function(){
                 return[
@@ -128,6 +138,13 @@
        checkChanged(event){
          console.log("The Check Box was clicked.");        
           }   
+
+        isType(tipo, valor){
+          console.log('tipo' + tipo + ' valor' + valor);
+          
+        return (tipo === valor);
+        }
+ 
       }; 
 
     window.customElements.define(MyFirstComp.is, MyFirstComp);
