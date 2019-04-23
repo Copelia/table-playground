@@ -58,8 +58,8 @@
       <thead>
         <tr>
           <template is="dom-repeat" items="{{columnList}}" as="column">     
-            <template is="dom-if" if="{{isType(column.tipo, 'text')}}">
-              <td><label>{{column.colName}}</label></td>
+            <template is="dom-if" if="{{isType(column.tipo, 'input')}}">
+              <td><input>{{column.colName}}</input></td>
             </template>
             <template is="dom-if" if="{{isType(column.tipo, 'td')}}">
               <td>{{column.colName}}</td>
@@ -110,9 +110,7 @@
             type: Array,
             value: function() {
               return[
-              {colName: 'Clienta', tipo:'text', type: Boolean, value: false},
-              {colName: 'Enviar', tipo: 'button', type: Boolean, value: false},
-              {colName: 'Columna', tipo: 'td', type: Boolean, value: false}
+              {colName: '', tipo:'', type: Boolean},
               ]
             }
           },
@@ -134,15 +132,14 @@
             }
           }
         }
-      //methods
+
+      //Methods
        checkChanged(event){
          console.log("The Check Box was clicked.");        
           }   
 
-        isType(tipo, valor){
-          console.log('tipo' + tipo + ' valor' + valor);
-          
-        return (tipo === valor);
+        isType(tipo, valor){ 
+          return (tipo === valor);
         }
  
       }; 
