@@ -1,7 +1,7 @@
 
 
-## Creando una tabla con polymer 2 
+## Building a table component from scratch with Polymer 2 
 
-Uso de dom-repeat
-Practicar dom-if
+## Installation
 
+bower install --save https://github.com/Copelia/table-playground.git#v.0.0.2
