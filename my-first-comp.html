@@ -73,9 +73,16 @@
 
       <template is="dom-repeat" items="{{productsList}}" as="product">     
         <tbody>
-          <tr>       
-            <td>{{product.tipo}}</td>
-            <td>{{product.name}}</td>  
+          <tr>    
+            <td>{{product.order}}</td>      
+            <td>{{product.name}}</td>        
+            <td>{{product.contact}}</td>  
+            <template is="dom-if" if="{{isTypeRow(product.products.tipo, 'textarea')}}">      
+              <td><textarea>{{product.products.list}}</textarea></td>    
+            </template>   
+            <template is="dom-if" if="{{isTypeRow(product.products.tipo, 'td')}}">      
+              <td>{{product.products.list}}</td>    
+            </template>   
             <td> <paper-checkbox on-change="checkChanged"></paper-checkbox></td>
             <template is="dom-if" if="{{product.week}}">
               <template is="dom-repeat" items="{{weekList}}" as="week">
@@ -118,7 +125,7 @@
               type: Array,
               value: function() {
                 return[
-                {name: '', tipo: '', week: true},
+                {order: '', name: '', contact: '', products: {list: '', tipo: ''}},
                 ]
               }
             },
@@ -139,6 +146,10 @@
           }   
 
         isType(tipo, valor){ 
+          return (tipo === valor);
+        }
+
+        isTypeRow(tipo, valor){
           return (tipo === valor);
         }
  

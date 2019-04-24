@@ -18,11 +18,10 @@
   <body>
     <div class="vertical-section-container centered">
       <my-first-comp
-      column-list='[{"colName": "Tipo", "tipo": "td", "type": "Boolean"},
-      {"colName": "Nombre", "tipo": "td", "type": "Boolean"},{"colName": "Selecciona", "tipo": "td", "type": "Boolean"}]'
-      products-list='[{"name": "CremaUno", "tipo": "Limpieza"}, {"name": "CremaDos", "tipo": "Limpieza"}, {"name": "CremaTres", "tipo": "Exfoliacion", "week": true},
-      {"name": "CremaCuatro", "tipo": "Exfoliacion", "week": true},
-      {"name": "CremaCinco", "tipo": "Exfoliacion", "week": true}]'
+      column-list='[{"colName": "Orden", "tipo": "td", "type": "Boolean"},
+      {"colName": "Nombre", "tipo": "td", "type": "Boolean"}, {"colName": "Contacto", "tipo": "td", "type": "Boolean"}, {"colName": "Productos", "tipo": "td", "type": "Boolean"}, {"colName": "Revisado", "tipo": "td", "type": "Boolean"}]'
+      products-list=
+      '[{"order": 12, "name": "Alice", "contact": "email", "products": {"list": "uno, dos, tres", "tipo": "textarea"}}, {"order": 13, "name": "Ale", "contact": "email", "products": {"list": "dos, dos, tres", "tipo": "td"}}]'
       week-list='[{"day": "LUN"}, {"day": "MAR"}, {"day": "MIE"}, {"day": "JUE"}, {"day": "VIE"}, {"day": "SAB"}, {"day": "DOM"}]'
       ></my-first-comp>
     </div>
