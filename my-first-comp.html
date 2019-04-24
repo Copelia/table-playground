@@ -44,14 +44,15 @@
         color: white;
        }
 
-      .button-container{
+      .button-container {
         margin-top: 2em;
         text-align: center;
       }
 
-      .week-button{
+      .checkbox-week {
         float: left;
       }
+
 
     </style>
     <table class="myTable">
@@ -79,7 +80,7 @@
             <td> <paper-checkbox on-change="checkChanged"></paper-checkbox></td>
             <template is="dom-if" if="{{product.week}}">
               <template is="dom-repeat" items="{{weekList}}" as="week">
-                <td>{{week.day}}<input class="week-button" type="radio"></td>      
+                <td>{{week.day}}<paper-checkbox class="checkbox-week"></paper-checkbox></td>      
               </template>
             </template>       
           </tr>
