@@ -2,6 +2,8 @@
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
 <link rel="import" href="../paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
 <dom-module id="my-first-comp">
   <template>
@@ -79,7 +81,12 @@
             <td> <paper-checkbox on-change="checkChanged"></paper-checkbox></td>
             <template is="dom-if" if="{{product.week}}">
               <template is="dom-repeat" items="{{weekList}}" as="week">
-                <td>{{week.day}}<input class="week-button" type="radio"></td>      
+                <td>
+                  <paper-radio-group on-click="{{triggered}}" selected="{{selected}}" id="radioMaster">
+                    <paper-radio-button noink name="{{week.day}}">{{week.day}}</paper-input>
+                  </paper-radio-group>  
+                  </td>
+                <!-- <td>{{week.day}}<input on-change="radioChanged" class="week-button" type="radio"></td>       -->
               </template>
             </template>       
           </tr>
@@ -129,18 +136,27 @@
                   {day: ''}
                 ]
               }
+            },
+            selectedItem: function(event) {
+              var selectedItem = this.$.radioMaster.selectedItem;
+              var please = selectedItem.name
+              console.log(please);
             }
+          // observers: ['_selectedItemChanged(selectedItem)'],
+          //   _selectedItemChanged: function(el){
+          //     console.log(this.$.selected);
+          //   }  
           }
         }
 
       //Methods
-       checkChanged(event){
-         console.log("The Check Box was clicked.");        
-          }   
-
         isType(tipo, valor){ 
           return (tipo === valor);
         }
+
+       checkChanged(event){
+        console.log("The Check Box was clicked.");       
+          }   
  
       }; 
 
