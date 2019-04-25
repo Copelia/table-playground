@@ -136,7 +136,9 @@
 
       //Methods
        checkChanged(event){
-         console.log("The Check Box was clicked.");        
+         if(event.target.checked) {
+              console.log(event.target.value);
+            }      
           }   
 
         isType(tipo, valor){ 
