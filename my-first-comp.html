@@ -46,14 +46,15 @@
         color: white;
        }
 
-      .button-container{
+      .button-container {
         margin-top: 2em;
         text-align: center;
       }
 
-      .week-button{
+      .checkbox-week {
         float: left;
       }
+
 
     </style>
     <table class="myTable">
@@ -81,12 +82,16 @@
             <td> <paper-checkbox on-change="checkChanged"></paper-checkbox></td>
             <template is="dom-if" if="{{product.week}}">
               <template is="dom-repeat" items="{{weekList}}" as="week">
+<<<<<<< HEAD
                 <td>
                   <paper-radio-group on-click="{{triggered}}" selected="{{selected}}" id="radioMaster">
                     <paper-radio-button noink name="{{week.day}}">{{week.day}}</paper-input>
                   </paper-radio-group>  
                   </td>
                 <!-- <td>{{week.day}}<input on-change="radioChanged" class="week-button" type="radio"></td>       -->
+=======
+                <td>{{week.day}}<paper-checkbox class="checkbox-week"></paper-checkbox></td>      
+>>>>>>> 0c67be78ed5bad55e937cb5ddbbbd23e2c4c822c
               </template>
             </template>       
           </tr>
@@ -150,6 +155,15 @@
         }
 
       //Methods
+<<<<<<< HEAD
+=======
+       checkChanged(event){
+         if(event.target.checked) {
+              console.log(event.target.value);
+            }      
+          }   
+
+>>>>>>> 0c67be78ed5bad55e937cb5ddbbbd23e2c4c822c
         isType(tipo, valor){ 
           return (tipo === valor);
         }
