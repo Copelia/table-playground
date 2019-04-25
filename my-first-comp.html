@@ -2,6 +2,8 @@
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
 <link rel="import" href="../paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
 <dom-module id="my-first-comp">
   <template>
@@ -77,10 +79,10 @@
           <tr>       
             <td>{{product.tipo}}</td>
             <td>{{product.name}}</td>  
-            <td> <paper-checkbox on-change="checkChanged"></paper-checkbox></td>
+            <td> <paper-checkbox name={{product.name}} on-change="checkProducts"></paper-checkbox></td>
             <template is="dom-if" if="{{product.week}}">
               <template is="dom-repeat" items="{{weekList}}" as="week">
-                <td>{{week.day}}<paper-checkbox class="checkbox-week"></paper-checkbox></td>      
+                <td>{{week.day}}<paper-checkbox class="checkbox-week" name={{week.day}} on-change="checkWeek"></paper-checkbox></td>      
               </template>
             </template>       
           </tr>
@@ -135,15 +137,24 @@
         }
 
       //Methods
-       checkChanged(event){
-         if(event.target.checked) {
-              console.log(event.target.value);
-            }      
-          }   
 
-        isType(tipo, valor){ 
+       checkProducts(event){
+         if(event.target.checked) {
+              const productName = event.target.name;
+              console.log(productName);
+            }      
+          }  
+
+        checkWeek(event){
+          if(event.target.checked) {
+              const weekDay = event.target.name;
+              console.log(weekDay);
+          }   
+        }   
+
+        isType(tipo, valor){
           return (tipo === valor);
-        }
+        } 
  
       }; 
 
