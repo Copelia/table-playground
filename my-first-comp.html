@@ -79,19 +79,10 @@
           <tr>       
             <td>{{product.tipo}}</td>
             <td>{{product.name}}</td>  
-            <td> <paper-checkbox on-change="checkChanged"></paper-checkbox></td>
+            <td> <paper-checkbox name={{product.name}} on-change="checkProducts"></paper-checkbox></td>
             <template is="dom-if" if="{{product.week}}">
               <template is="dom-repeat" items="{{weekList}}" as="week">
-<<<<<<< HEAD
-                <td>
-                  <paper-radio-group on-click="{{triggered}}" selected="{{selected}}" id="radioMaster">
-                    <paper-radio-button noink name="{{week.day}}">{{week.day}}</paper-input>
-                  </paper-radio-group>  
-                  </td>
-                <!-- <td>{{week.day}}<input on-change="radioChanged" class="week-button" type="radio"></td>       -->
-=======
-                <td>{{week.day}}<paper-checkbox class="checkbox-week"></paper-checkbox></td>      
->>>>>>> 0c67be78ed5bad55e937cb5ddbbbd23e2c4c822c
+                <td>{{week.day}}<paper-checkbox class="checkbox-week" name={{week.day}} on-change="checkWeek"></paper-checkbox></td>      
               </template>
             </template>       
           </tr>
@@ -141,36 +132,29 @@
                   {day: ''}
                 ]
               }
-            },
-            selectedItem: function(event) {
-              var selectedItem = this.$.radioMaster.selectedItem;
-              var please = selectedItem.name
-              console.log(please);
             }
-          // observers: ['_selectedItemChanged(selectedItem)'],
-          //   _selectedItemChanged: function(el){
-          //     console.log(this.$.selected);
-          //   }  
           }
         }
 
       //Methods
-<<<<<<< HEAD
-=======
-       checkChanged(event){
+
+       checkProducts(event){
          if(event.target.checked) {
-              console.log(event.target.value);
+              const productName = event.target.name;
+              console.log(productName);
             }      
-          }   
+          }  
 
->>>>>>> 0c67be78ed5bad55e937cb5ddbbbd23e2c4c822c
-        isType(tipo, valor){ 
+        checkWeek(event){
+          if(event.target.checked) {
+              const weekDay = event.target.name;
+              console.log(weekDay);
+          }   
+        }   
+
+        isType(tipo, valor){
           return (tipo === valor);
-        }
-
-       checkChanged(event){
-        console.log("The Check Box was clicked.");       
-          }   
+        } 
  
       }; 
 
