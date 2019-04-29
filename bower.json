@@ -7,7 +7,8 @@
     "paper-checkbox": "@polymer/paper-checkbox#2.0-preview",
     "paper-button": "@polymer/paper-button#2.0-preview",
     "paper-radio-button": "@polymer/paper-radio-button#2.0-preview",
-    "paper-radio-group": "@polymer/paper-radio-group#2.0-preview"
+    "paper-radio-group": "@polymer/paper-radio-group#2.0-preview",
+    "iron-selector": "@polymer/iron-selector#2.0-preview"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",

@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
+<link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-radio-group/paper-radio-group.html">
@@ -79,19 +80,26 @@
           <tr>       
             <td>{{product.tipo}}</td>
             <td>{{product.name}}</td>  
+            <iron-selector selected-attribute="checked" attr-for-selected="name">
             <td> <paper-checkbox name={{product.name}} on-change="checkProducts"></paper-checkbox></td>
             <template is="dom-if" if="{{product.week}}">
               <template is="dom-repeat" items="{{weekList}}" as="week">
                 <td>{{week.day}}<paper-checkbox class="checkbox-week" name={{week.day}} on-change="checkWeek"></paper-checkbox></td>      
               </template>
-            </template>       
+            </template>   
+          </iron-selector>     
           </tr>
         </tbody>
       </template>
     </table>
 
+<!--     <iron-selector selected-attribute="checked" attr-for-selected="name">
+      <paper-checkbox name="desayuno" checked="false"></paper-checkbox>
+      <paper-checkbox name="comida"  checked="false"></paper-checkbox>
+      <paper-checkbox name="cena" checked="false"></paper-checkbox>
+    </iron-selector>   -->
     <div class="button-container">
-      <paper-button raised class="indigo">ENVIAR</paper-button>
+      <paper-button on-click="buildProductObject" raised class="indigo">ENVIAR</paper-button>
       <paper-button raised class="green">IMPRIMIR</paper-button>
     </div>
   </template>
@@ -113,7 +121,7 @@
             type: Array,
             value: function() {
               return[
-              {colName: '', tipo:'', type: Boolean},
+              {colName: '', tipo:'', type: Boolean}
               ]
             }
           },
@@ -121,7 +129,7 @@
               type: Array,
               value: function() {
                 return[
-                {name: '', tipo: '', week: true},
+                {name: '', tipo: '', week: true}
                 ]
               }
             },
@@ -129,7 +137,7 @@
               type: Array,
               value: function(){
                 return[
-                  {day: ''}
+                  {day: ''},
                 ]
               }
             }
@@ -138,25 +146,51 @@
 
       //Methods
 
+        isType(tipo, valor){
+          return (tipo === valor);
+        } 
+
+        // buildProductObject(product, days){
+        //   const productObj = {
+        //     product: product,
+        //     days: days
+        //   }
+        //   return productObj
+        // }
+
        checkProducts(event){
          if(event.target.checked) {
-              const productName = event.target.name;
+              let productName = event.target.name;
               console.log(productName);
             }      
+          // buildProductObject(productName);  
           }  
 
         checkWeek(event){
           if(event.target.checked) {
-              const weekDay = event.target.name;
+              let weekDay = event.target.name;
               console.log(weekDay);
           }   
         }   
 
-        isType(tipo, valor){
-          return (tipo === valor);
-        } 
- 
-      }; 
+        buildProductObject(){
+          let checkboxes = this.shadowRoot.querySelectorAll('paper-checkbox');
+          let getValues = "";      
+          // let getValues = [];
+          // console.log(checkboxes);
+          
+          for(let i = 0; checkboxes.length > i; i++){
+            if (checkboxes[i].checked  == true){
+              console.log(checkboxes[i]);
+              // getValues += ","+checkboxes[i].name;
+            }
+            // getValues.push(checkboxes.name);
+          }
+          // const readValues = getValues.join(',');
+          // console.log(readValues); 
+        }
+        
+    } 
 
     window.customElements.define(MyFirstComp.is, MyFirstComp);
   </script>
